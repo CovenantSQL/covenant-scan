@@ -4,8 +4,12 @@ import router from './router'
 import store from './store'
 import './registerServiceWorker'
 
-Vue.config.productionTip = false
+import ProgressBar from '@/components/ProgressBar.vue'
+// global progress bar
+const bar = (Vue.prototype.$bar = new Vue(ProgressBar).$mount())
+document.body.appendChild(bar.$el)
 
+Vue.config.productionTip = false
 new Vue({
   router,
   store,

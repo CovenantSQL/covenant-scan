@@ -1,18 +1,29 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <header class="header">
+      <nav class="inner">
+        <router-link to="/" exact>Home</router-link>
+        <router-link to="/about">About</router-link>
+      </nav>
+    </header>
+    <transition name="fade" mode="out-in">
+      <router-view class="view"></router-view>
+    </transition>
   </div>
 </template>
+
+<script lang="ts">
+import 'ant-design-vue/dist/antd.less'
+import Vue from 'vue'
+export default Vue.extend({})
+</script>
 
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: lighten(#eceef1, 30%);
   text-align: center;
   color: #2c3e50;
 }
