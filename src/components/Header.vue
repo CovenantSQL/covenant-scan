@@ -1,26 +1,45 @@
 <template>
   <header class="header">
-    <a-row class="header-row">
-      <a-col class="header-left" :md="8" :sm="24" :xs="24">
+    <div class="header-row">
+      <div class="header-left">
         <router-link to="/" id="logo">
           <img
             alt="logo"
             height="32"
             src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/logo.png"
+          />
+          <span style="color: black;font-size: 16px;font-weight: 400;"
+            >CovenantScan</span
           >
-          <span style="color: black;font-size: 16px;font-weight: 400;">CovenantScan</span>
         </router-link>
-      </a-col>
-      <a-col class="header-right" :md="16" :sm="0">
-        <a-input-search placeholder="input search text" style="width: 200px" @search="onSearch"/>
-        <a-button
-          size="small"
-          class="header-lang-button"
-          @click="onClick"
-          key="lang-button"
-        >{{isCN ? 'English' : '中文'}}</a-button>
-      </a-col>
-    </a-row>
+      </div>
+      <div class="header-right">
+        <a-input-search
+          class="search"
+          placeholder="交易/账户/DBID/区块高度"
+          @search="onSearch"
+        />
+        <span class="lang-dropdown">
+          <a-dropdown>
+            <a class="ant-dropdown-link"
+              >简体中文
+              <a-icon type="down" />
+            </a>
+            <a-menu slot="overlay">
+              <a-menu-item>
+                <a @click="onLangSelected">简体中文</a>
+              </a-menu-item>
+              <a-menu-item>
+                <a @click="onLangSelected">繁体中文</a>
+              </a-menu-item>
+              <a-menu-item>
+                <a @click="onLangSelected">English</a>
+              </a-menu-item>
+            </a-menu>
+          </a-dropdown>
+        </span>
+      </div>
+    </div>
   </header>
 </template>
 
@@ -31,6 +50,11 @@ import { Component, Vue } from 'vue-property-decorator'
 export default class Header extends Vue {}
 </script>
 
+<style>
+.ant-input-search {
+  border-radius: 30px;
+}
+</style>
 <style lang="scss" scoped>
 .header {
   height: 64px;
@@ -43,6 +67,21 @@ export default class Header extends Vue {}
 .header-row {
   line-height: 64px;
   max-width: 1200px;
+  padding: 0 15px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.search {
+  width: 300px;
+  margin: 0 5px;
+}
+.lang-dropdown {
+  margin-left: 5px;
+  padding: 6px 14px;
+  border-radius: 30px;
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
 }
 </style>
