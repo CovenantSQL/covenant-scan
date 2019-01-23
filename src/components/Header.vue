@@ -10,7 +10,7 @@
         <a-input-search class="search" placeholder="交易/账户/DBID/区块高度" @search="onSearch"/>
         <span class="lang-dropdown">
           <a-dropdown>
-            <a class="ant-dropdown-link">简体中文
+            <a class="lang-selected">简体中文
               <a-icon type="down"/>
             </a>
             <a-menu slot="overlay">
@@ -76,5 +76,8 @@ export default class Header extends Vue {}
   &:hover {
     background: rgba(0, 0, 0, 0.1);
   }
+}
+.lang-selected {
+  color: #333;
 }
 </style>

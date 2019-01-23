@@ -21,7 +21,7 @@ export default class Landing extends Vue {}
 <style lang="scss" scoped>
 .layout {
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 20px 0 40px;
   width: 1200px;
   min-height: 55vh;
 }
