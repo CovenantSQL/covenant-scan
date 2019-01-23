@@ -4,7 +4,6 @@
       <div class="header-left">
         <router-link to="/">
           <img svg-inline class="logo" src="@/assets/logo.svg" alt="covenant-scan-logo">
-          <span>CovenantScan</span>
         </router-link>
       </div>
       <div class="header-right">

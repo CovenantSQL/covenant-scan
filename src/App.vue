@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <Header/>
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
@@ -25,7 +25,8 @@ export default class App extends Vue {}
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: lighten(#eceef1, 30%);
+  background: #f0f2f5;
+  min-height: 100vh;
   color: #2c3e50;
 }
 </style>
