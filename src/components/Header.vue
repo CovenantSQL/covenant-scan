@@ -2,28 +2,17 @@
   <header class="header">
     <div class="header-row">
       <div class="header-left">
-        <router-link to="/" id="logo">
-          <img
-            alt="logo"
-            height="32"
-            src="https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/logo.png"
-          />
-          <span style="color: black;font-size: 16px;font-weight: 400;"
-            >CovenantScan</span
-          >
+        <router-link to="/">
+          <img svg-inline class="logo" src="@/assets/logo.svg" alt="covenant-scan-logo">
+          <span>CovenantScan</span>
         </router-link>
       </div>
       <div class="header-right">
-        <a-input-search
-          class="search"
-          placeholder="交易/账户/DBID/区块高度"
-          @search="onSearch"
-        />
+        <a-input-search class="search" placeholder="交易/账户/DBID/区块高度" @search="onSearch"/>
         <span class="lang-dropdown">
           <a-dropdown>
-            <a class="ant-dropdown-link"
-              >简体中文
-              <a-icon type="down" />
+            <a class="ant-dropdown-link">简体中文
+              <a-icon type="down"/>
             </a>
             <a-menu slot="overlay">
               <a-menu-item>
@@ -63,6 +52,11 @@ export default class Header extends Vue {}
   position: relative;
   z-index: 10;
   max-width: 100%;
+}
+.logo {
+  height: 42px;
+  margin-bottom: 4px;
+  width: auto;
 }
 .header-row {
   line-height: 64px;

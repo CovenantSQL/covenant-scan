@@ -2,6 +2,13 @@ module.exports = {
   devServer: {
     host: 'localhost',
   },
+  chainWebpack: config => {
+    config.module
+      .rule('vue')
+      .use('vue-svg-inline-loader')
+      .loader('vue-svg-inline-loader')
+      .options({})
+  },
   css: {
     loaderOptions: {
       less: {
