@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import Antd from 'ant-design-vue'
+
 import './registerServiceWorker'
 
 import ProgressBar from '@/components/ProgressBar.vue'
@@ -10,6 +12,7 @@ const bar = (Vue.prototype.$bar = new Vue(ProgressBar).$mount())
 document.body.appendChild(bar.$el)
 
 Vue.config.productionTip = false
+Vue.use(Antd)
 new Vue({
   router,
   store,
