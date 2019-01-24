@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <p>life: {{count}}s</p>
+    <p>life: {{ count }}s</p>
     <a-button @click="add1s">+1s</a-button>
   </div>
 </template>

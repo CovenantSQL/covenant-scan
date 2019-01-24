@@ -15,7 +15,11 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component({
   components: {},
 })
-export default class Landing extends Vue {}
+export default class Landing extends Vue {
+  mounted() {
+    this.$bar.start()
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -53,4 +57,3 @@ export default class Landing extends Vue {}
   }
 }
 </style>
-

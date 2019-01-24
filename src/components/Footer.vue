@@ -47,7 +47,7 @@
         height="45"
       >
     </a>
-    <section class="copyright">{{`Copyright © ${new Date().getFullYear()} Covenant Labs`}}</section>
+    <section class="copyright">{{ `Copyright © ${new Date().getFullYear()} Covenant Labs` }}</section>
   </footer>
 </template>
 
