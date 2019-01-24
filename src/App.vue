@@ -32,4 +32,7 @@ export default class App extends Vue {}
   min-height: 100vh;
   color: #2c3e50;
 }
+.view {
+  min-height: 60vh;
+}
 </style>
