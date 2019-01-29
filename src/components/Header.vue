@@ -50,7 +50,7 @@ export default class Header extends Vue {
 .header {
   height: 64px;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(240, 241, 242, 65);
+  box-shadow: 0 2px 8px #dadcde;
   position: relative;
   z-index: 10;
   max-width: 100%;

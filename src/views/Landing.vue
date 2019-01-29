@@ -3,7 +3,7 @@
     <div class="hero">
       <h3 class="heading">CovenantSQL TestNet 全新上线</h3>
     </div>
-    <div class="metrics">
+    <div class="card metrics">
       <p class="title">
         全网预览
         <span class="version">v0.2.0</span>
@@ -28,8 +28,42 @@
       </div>
     </div>
     <div class="chain">
-      <div class="card blocks"></div>
-      <div class="card txs"></div>
+      <div class="card blocks">
+        <div class="header">
+          <p class="title">最新区块</p>
+          <a>查看全部</a>
+        </div>
+        <div class="recent-blocks">
+          <div class="block item">
+            <div class="left">
+              <div class="height">#12</div>
+              <div class="tx-count">6</div>
+              <div class="producer">4io8u9v9nydaQPXtmqibg8gJbkNFd7Dd</div>
+            </div>
+            <div class="right">
+              <div class="hash">v9nydaQPXtm...</div>
+              <div class="time">3 minutes ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card txs">
+        <div class="header">
+          <p class="title">最新转账</p>
+          <a>查看全部</a>
+        </div>
+        <div class="tx item">
+          <div class="left">
+            <div class="hash">u9v9nydaQPXtmqibg8gJ</div>
+            <div class="type">6</div>
+            <div class="address">4io8u9v9nydaQPXtmqibg8gJbkNFd7Dd</div>
+          </div>
+          <div class="right">
+            <div class="block_hash">v9nyda...</div>
+            <div class="time">3 minutes ago</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -72,7 +106,7 @@ export default class Landing extends Vue {
   background-size: cover;
   width: 100%;
   height: 100%;
-  filter: blur(2px);
+  // filter: blur(1px);
 }
 .hero {
   height: 100px;
@@ -85,6 +119,7 @@ export default class Landing extends Vue {
   align-items: center;
   z-index: 9;
   overflow: hidden;
+  box-shadow: 0 2px 8px #dadcde;
 
   .heading {
     text-align: center;
@@ -95,18 +130,22 @@ export default class Landing extends Vue {
     margin: 0;
   }
 }
-.metrics {
-  height: 160px;
-  width: 100%;
+.card {
   padding: 20px;
-  margin-bottom: 16px;
-  border-radius: 6px;
   background: white;
+  box-shadow: 0 2px 8px #dadcde;
+  border-radius: 6px;
 
   .title {
     font-size: 16px;
     margin-bottom: 5px;
   }
+}
+.metrics {
+  height: 160px;
+  width: 100%;
+  margin-bottom: 16px;
+
   .version {
     font-size: 16px;
     margin-left: 6px;
@@ -138,14 +177,35 @@ export default class Landing extends Vue {
 .chain {
   display: flex;
   min-height: 650px;
-  .card {
+  .blocks,
+  .txs {
     flex: 1;
     height: 650px;
-    border-radius: 6px;
-    background: rgba($color: black, $alpha: 0.1);
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+    .item {
+      display: flex;
+      padding: 15px 15px;
+      margin: 0 -20px;
+      justify-content: space-between;
+      border-top: solid 1px #e4dada;
+      &:hover {
+        background: #f8fcff;
+      }
+      .right {
+        text-align: right;
+      }
+    }
   }
   .blocks {
     margin-right: 16px;
+
+    .block {
+    }
   }
 }
 </style>
