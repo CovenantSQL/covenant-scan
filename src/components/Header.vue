@@ -8,7 +8,7 @@
       </div>
       <div class="header-right">
         <a-input-search class="search" placeholder="交易/账户/DBID/区块高度" @search="onSearch"/>
-        <span class="lang-dropdown">
+        <!-- <span class="lang-dropdown">
           <a-dropdown>
             <a class="lang-selected">简体中文
               <a-icon type="down"/>
@@ -25,7 +25,7 @@
               </a-menu-item>
             </a-menu>
           </a-dropdown>
-        </span>
+        </span>-->
       </div>
     </div>
   </header>
