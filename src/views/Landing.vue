@@ -35,17 +35,22 @@
           <p class="title">最新区块</p>
           <router-link to="/blocks">查看全部</router-link>
         </div>
-        <div class="recent-blocks">
-          <div class="block item">
-            <div class="left">
-              <div class="height">#12</div>
-              <div class="tx-count">6</div>
-              <div class="producer">4io8u9v9nydaQPXtmqibg8gJbkNFd7Dd</div>
+        <div class="wrapper">
+          <div v-if="landingBlocks.length" class="recent-blocks">
+            <div :key="block.hash" v-for="block in landingBlocks" class="block item">
+              <div class="left">
+                <div class="height">#{{block.height}}</div>
+                <div class="tx-count">交易数：{{block.tx_count}}</div>
+                <div class="producer">{{block.producer}}</div>
+              </div>
+              <div class="right">
+                <div class="hash">hash</div>
+                <div class="time">{{block.timestamp_human}}</div>
+              </div>
             </div>
-            <div class="right">
-              <div class="hash">v9nydaQPXtm...</div>
-              <div class="time">3 minutes ago</div>
-            </div>
+          </div>
+          <div v-else>
+            <a-icon slot="indicator" type="loading" style="padding: 20px; font-size: 16px" spin/>
           </div>
         </div>
       </div>
@@ -79,6 +84,7 @@ import { namespace } from 'vuex-class'
 })
 export default class Landing extends Vue {
   @namespace('bp').Getter latestHeight: any
+  @namespace('bp').Getter landingBlocks: any
 
   public runningStatus = {}
 
@@ -86,6 +92,7 @@ export default class Landing extends Vue {
     this.getBlocks(1, 10)
   }
 
+  // methods
   getBlocks(page: number, size: number) {
     this.$store.dispatch('bp/getBlocks', { page, size })
   }
@@ -172,21 +179,26 @@ export default class Landing extends Vue {
   .blocks,
   .txs {
     flex: 1;
-    height: 650px;
 
     .header {
       display: flex;
       justify-content: space-between;
       margin-bottom: 5px;
     }
+    .wrapper {
+      max-height: 100%;
+      overflow: auto;
+    }
     .item {
       display: flex;
-      padding: 15px 15px;
-      margin: 0 -20px;
+      padding: 15px 5px;
       justify-content: space-between;
       border-top: solid 1px #f7ebeb;
       &:hover {
         background: #f8fcff;
+      }
+      .left {
+        max-width: 200px;
       }
       .right {
         text-align: right;

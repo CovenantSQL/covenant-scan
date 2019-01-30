@@ -10,13 +10,16 @@ cql.connect()
 const state = {
   runningStatus: {},
   pagination: {},
-  blocks: [],
+  blocks: [], // for landing page
 }
 
 // getters
 const getters = {
   latestHeight(state) {
     return state.pagination.total
+  },
+  landingBlocks(state) {
+    return state.blocks
   },
 }
 
