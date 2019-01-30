@@ -57,7 +57,7 @@
       <div class="card txs">
         <div class="header">
           <p class="title">最新转账</p>
-          <a>查看全部</a>
+          <router-link to="/txs">查看全部</router-link>
         </div>
         <div class="tx item">
           <div class="left">
@@ -89,12 +89,13 @@ export default class Landing extends Vue {
   public runningStatus = {}
 
   mounted() {
-    this.getBlocks(1, 10)
+    this.getBlocksAndTxs(1, 10)
   }
 
   // methods
-  getBlocks(page: number, size: number) {
-    this.$store.dispatch('bp/getBlocks', { page, size })
+  async getBlocksAndTxs(page: number, size: number) {
+    await this.$store.dispatch('bp/getBlocks', { page, size })
+    await this.$store.dispatch('bp/getTxs', { page, size })
   }
 }
 </script>

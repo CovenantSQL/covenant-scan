@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Landing from './views/Landing.vue'
 import Blocks from './views/Blocks.vue'
+import Txs from './views/Txs.vue'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
       path: '/blocks',
       name: 'blocks',
       component: Blocks,
+    },
+    {
+      path: '/txs',
+      name: 'txs',
+      component: Txs,
     },
   ],
 })
