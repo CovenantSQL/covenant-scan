@@ -6,24 +6,26 @@
     <div class="card metrics">
       <p class="title">
         全网预览
-        <span class="version">v0.2.0</span>
+        <span class="version">v --</span>
       </p>
       <div class="status">
         <div class="status-item">
-          <label class="name">最新区块</label>
-          <div class="data">{{this.runningStatus.block_height}}</div>
+          <router-link to="/blocks">
+            <label class="name">总区块数</label>
+            <div class="data">{{this.latestHeight || '-'}}</div>
+          </router-link>
         </div>
         <div class="status-item">
           <label class="name">已创建账户数</label>
-          <div class="data">{{this.runningStatus.count_accounts}}</div>
+          <div class="data">{{this.runningStatus.count_accounts || '-'}}</div>
         </div>
         <div class="status-item">
           <label class="name">已创建数据库数</label>
-          <div class="data">{{this.runningStatus.count_databases}}</div>
+          <div class="data">{{this.runningStatus.count_databases || '-'}}</div>
         </div>
         <div class="status-item">
           <label class="name">每秒查询率(QPS)</label>
-          <div class="data">{{this.runningStatus.qps}}</div>
+          <div class="data">{{this.runningStatus.qps || '-'}}</div>
         </div>
       </div>
     </div>
@@ -70,12 +72,23 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { namespace } from 'vuex-class'
 
 @Component({
   components: {},
 })
 export default class Landing extends Vue {
-  public runningStatus = this.$store.state.runningStatus
+  @namespace('bp').Getter latestHeight: any
+
+  public runningStatus = {}
+
+  mounted() {
+    this.getBlocks(1, 10)
+  }
+
+  getBlocks(page: number, size: number) {
+    this.$store.dispatch('bp/getBlocks', { page, size })
+  }
 }
 </script>
 

@@ -8,7 +8,7 @@
     </a-breadcrumb>
     <div class="card txs">
       <p class="title">区块列表</p>
-      <p>当前已产出区块数量 40,107,220</p>
+      <p>当前已产出区块数量 --</p>
 
       <a-table
         :columns="columns"

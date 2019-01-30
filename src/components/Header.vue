@@ -7,7 +7,7 @@
         </router-link>
       </div>
       <div class="header-right">
-        <a-input-search class="search" placeholder="交易/账户/DBID/区块高度" @search="onSearch"/>
+        <a-input-search class="search" placeholder="交易/区块哈希/区块高度" @search="onSearch"/>
         <!-- <span class="lang-dropdown">
           <a-dropdown>
             <a class="lang-selected">简体中文
