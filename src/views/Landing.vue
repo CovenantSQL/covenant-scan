@@ -31,7 +31,7 @@
       <div class="card blocks">
         <div class="header">
           <p class="title">最新区块</p>
-          <a>查看全部</a>
+          <router-link to="/blocks">查看全部</router-link>
         </div>
         <div class="recent-blocks">
           <div class="block item">
@@ -75,16 +75,7 @@ import { Component, Vue } from 'vue-property-decorator'
   components: {},
 })
 export default class Landing extends Vue {
-  private $bar: any
   public runningStatus = this.$store.state.runningStatus
-
-  created() {
-    this.$bar.start()
-  }
-
-  mounted() {
-    this.$bar.finish()
-  }
 }
 </script>
 
@@ -106,7 +97,6 @@ export default class Landing extends Vue {
   background-size: cover;
   width: 100%;
   height: 100%;
-  // filter: blur(1px);
 }
 .hero {
   height: 100px;
@@ -128,17 +118,6 @@ export default class Landing extends Vue {
     font-weight: 600;
     padding: 0 25px;
     margin: 0;
-  }
-}
-.card {
-  padding: 20px;
-  background: white;
-  box-shadow: 0 2px 8px #dadcde;
-  border-radius: 6px;
-
-  .title {
-    font-size: 16px;
-    margin-bottom: 5px;
   }
 }
 .metrics {
@@ -192,7 +171,7 @@ export default class Landing extends Vue {
       padding: 15px 15px;
       margin: 0 -20px;
       justify-content: space-between;
-      border-top: solid 1px #e4dada;
+      border-top: solid 1px #f7ebeb;
       &:hover {
         background: #f8fcff;
       }

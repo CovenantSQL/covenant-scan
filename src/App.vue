@@ -35,4 +35,15 @@ export default class App extends Vue {}
 .view {
   min-height: 60vh;
 }
+.card {
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 8px #dadcde;
+  border-radius: 6px;
+
+  .title {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+}
 </style>

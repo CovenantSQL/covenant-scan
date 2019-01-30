@@ -19,6 +19,15 @@ cql.connect()
 
 Vue.config.productionTip = false
 Vue.use(Antd)
+
+router.onReady(() => {
+  router.beforeResolve((to: any, from: any, next: any) => {
+    bar.start()
+    next()
+    bar.finish()
+  })
+})
+
 new Vue({
   router,
   store,
