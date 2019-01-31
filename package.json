@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "pregh": "yarn build",
+    "gh": "gh-pages -d dist"
   },
   "dependencies": {
     "ant-design-vue": "^1.3.2",
@@ -31,6 +33,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "gh-pages": "^2.0.1",
     "less": "^2.7.3",
     "less-loader": "^4.1.0",
     "mime": "^2.4.0",

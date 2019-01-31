@@ -18,9 +18,14 @@
         @change="handleTableChange"
         size="middle"
       >
-        <a slot="height" slot-scope="text" href="javascript:;">#{{text}}</a>
+        <span slot="height" slot-scope="text">#{{text}}</span>
         <span slot="cutHash" slot-scope="text">
           <hash-tip :hash="text" :cutLength="20"/>
+        </span>
+        <span slot="toHash" slot-scope="text">
+          <router-link :to="'/tx/' + text">
+            <hash-tip :hash="text" :cutLength="20"/>
+          </router-link>
         </span>
         <span slot="raw" slot-scope="tx">
           <raw-tx :tx="tx"/>
@@ -63,7 +68,7 @@ export default class Txs extends Vue {
     {
       title: '哈希',
       dataIndex: 'hash',
-      scopedSlots: { customRender: 'cutHash' },
+      scopedSlots: { customRender: 'toHash' },
     },
 
     {

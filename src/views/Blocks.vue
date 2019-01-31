@@ -19,9 +19,14 @@
         @change="handleTableChange"
         size="middle"
       >
-        <a slot="height" slot-scope="text" href="javascript:;">#{{text}}</a>
+        <span slot="height" slot-scope="text">#{{text}}</span>
         <span slot="cutHash" slot-scope="text">
           <hash-tip :hash="text" :cutLength="16"/>
+        </span>
+        <span slot="toHash" slot-scope="text">
+          <router-link :to="'/block/' + text">
+            <hash-tip :hash="text" :cutLength="16"/>
+          </router-link>
         </span>
         <span slot="date" slot-scope="text">{{formatDate(text)}}</span>
       </a-table>
@@ -59,7 +64,7 @@ export default class Blocks extends Vue {
     {
       title: '哈希',
       dataIndex: 'hash',
-      scopedSlots: { customRender: 'cutHash' },
+      scopedSlots: { customRender: 'toHash' },
     },
     {
       title: '生产者',
