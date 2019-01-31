@@ -223,7 +223,15 @@ export default class Landing extends Vue {
 }
 .chain {
   display: flex;
+  flex-direction: row;
   min-height: 650px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    .blocks {
+      margin-right: 0 !important;
+      margin-bottom: 15px;
+    }
+  }
   .blocks,
   .txs {
     flex: 1;
