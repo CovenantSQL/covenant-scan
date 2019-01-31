@@ -45,6 +45,16 @@ const actions = {
       }
     })
   },
+  async getBlockByHash({ commit }, hash) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await cql.bp.getBlockByHash(hash)
+        resolve(result)
+      } catch (e) {
+        reject(e)
+      }
+    })
+  },
   async getBlocks({ commit }, { page, size }) {
     return new Promise(async (resolve, reject) => {
       try {

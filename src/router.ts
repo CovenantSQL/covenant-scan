@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Landing from './views/Landing.vue'
 import Blocks from './views/Blocks.vue'
 import Txs from './views/Txs.vue'
+import Block from './views/Block.vue'
 
 Vue.use(Router)
 
@@ -33,6 +34,12 @@ export default new Router({
       path: '/txs',
       name: 'txs',
       component: Txs,
+    },
+    {
+      path: '/block/:hash',
+      name: 'block',
+      props: true,
+      component: Block
     },
   ],
 })
