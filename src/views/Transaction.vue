@@ -8,12 +8,18 @@
     </a-breadcrumb>
     <div class="card">
       <p class="title">
-        <span>#{{transaction.height}}</span>
+        <span>交易：{{transaction.hash}}</span>
       </p>
       <div class="content">
         <div class="row">
-          <label class="label">块高</label>
-          <div class="data">{{transaction.height}}</div>
+          <label class="label">所属块高</label>
+          <div class="data">#{{transaction.block_height}}</div>
+        </div>
+        <div class="row">
+          <label class="label">所属块哈希</label>
+          <div class="data">
+            <router-link :to="'/block/' + transaction.block_hash">{{transaction.block_hash}}</router-link>
+          </div>
         </div>
         <div class="row">
           <label class="label">时间</label>
@@ -24,26 +30,63 @@
           <div class="data">{{transaction.hash}}</div>
         </div>
         <div class="row">
-          <label class="label">交易数</label>
-          <div class="data">{{transaction.tx_count}}</div>
+          <label class="label">交易类型</label>
+          <div class="data">{{transaction.type}}</div>
         </div>
         <div class="row">
-          <label class="label">父块</label>
-          <div class="data">
-            <router-link :to="'/block/' + transaction.parent">{{transaction.parent}}</router-link>
+          <label class="label">原始交易数据</label>
+        </div>
+        <div class="raw-wrapper">
+          <div class="raw-tx">
+            <div class="row">
+              <span class="label">哈希</span>
+              {{transaction.tx.DataHash}}
+            </div>
+            <div class="row">
+              <span class="label">Gas</span>
+              {{transaction.tx.GasPrice}}
+            </div>
+            <div class="row">
+              <span class="label">CPU</span>
+              {{transaction.tx.LoadAvgPerCPU}}
+            </div>
+            <div class="row">
+              <span class="label">内存</span>
+              {{transaction.tx.Memory}}
+            </div>
+            <div class="row">
+              <span class="label">Space</span>
+              {{transaction.tx.Space}}
+            </div>
+            <div class="row">
+              <span class="label">NodeID</span>
+              {{transaction.tx.NodeID}}
+            </div>
+            <div class="row">
+              <span class="label">Nonce</span>
+              {{transaction.tx.Nonce}}
+            </div>
+            <div class="row">
+              <span class="label">TokenType</span>
+              {{transaction.tx.TokenType}}
+            </div>
+            <div class="row">
+              <span class="label">TxType</span>
+              {{transaction.tx.TxType}}
+            </div>
+            <div class="row">
+              <span class="label">TargetUser</span>
+              {{transaction.tx.TargetUser || '-'}}
+            </div>
+            <div class="row">
+              <span class="label">签名</span>
+              <pre>{{JSON.stringify(transaction.tx.Signature, null, 2)}}</pre>
+            </div>
+            <div class="row">
+              <span class="label">签名者</span>
+              <pre>{{JSON.stringify(transaction.tx.Signee, null, 2)}}</pre>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <label class="label">生产者</label>
-          <div class="data">{{transaction.producer}}</div>
-        </div>
-        <div class="row">
-          <label class="label">默克尔树根</label>
-          <div class="data">{{transaction.merkle_root}}</div>
-        </div>
-        <div class="row">
-          <label class="label">版本</label>
-          <div class="data">{{transaction.version}}</div>
         </div>
       </div>
     </div>
@@ -51,7 +94,7 @@
 </template>
 
 <script lang="ts">
-import { Prop, Component, Vue } from 'vue-property-decorator'
+import { Prop, Component, Watch, Vue } from 'vue-property-decorator'
 import { State, namespace } from 'vuex-class'
 import moment from 'moment'
 import HashTip from '@/components/HashTip.vue'
@@ -74,10 +117,10 @@ export default class Transaction extends Vue {
     this.$store.dispatch('bp/connectBP').then(this.fetchData)
   }
 
-  updated() {
-    if (this.transaction.hash !== this.hash) {
-      this.fetchData()
-    }
+  // watch
+  @Watch('hash')
+  onRouteHashChanged() {
+    this.fetchData()
   }
 
   // async
@@ -88,7 +131,6 @@ export default class Transaction extends Vue {
         'bp/getTransactionByHash',
         this.hash
       )
-      console.log('/////////', result)
 
       this.transaction = result
       this.loading = false
@@ -117,6 +159,7 @@ export default class Transaction extends Vue {
   margin-bottom: 15px;
 }
 .content {
+  margin-top: 15px;
   .row {
     display: flex;
     margin-bottom: 5px;
@@ -124,6 +167,17 @@ export default class Transaction extends Vue {
       color: #888;
       width: 120px;
     }
+  }
+  .raw-wrapper {
+    margin: 5px 0 15px;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #efefef;
+  }
+  pre {
+    font-size: 12px;
+    font-family: 'Lucida Console', Monaco, monospace;
   }
 }
 </style>

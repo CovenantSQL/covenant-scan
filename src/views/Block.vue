@@ -112,6 +112,7 @@ export default class Block extends Vue {
   margin-bottom: 15px;
 }
 .content {
+  margin-top: 15px;
   .row {
     display: flex;
     margin-bottom: 5px;
