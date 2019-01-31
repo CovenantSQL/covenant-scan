@@ -36,7 +36,13 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class Header extends Vue {
-  onSearch() {}
+  onSearch() {
+    this.$notification.open({
+      message: '搜索功能开发中...',
+      description:
+        '请直接补全URL: /block/$hash 或者 /tx/$hash 访问区块与交易页面',
+    })
+  }
   onLangSelected() {}
 }
 </script>
