@@ -48,9 +48,9 @@
               </div>
               <div class="right">
                 <div class="hash">
-                  <hash-tip :hash="block.hash" :cutLength="6"/>
+                  <hash-tip :hash="block.hash" :cutLength="16"/>
                 </div>
-                <div class="time">{{block.timestamp_human}}</div>
+                <div class="time">{{formatDate(block.timestamp_human)}}</div>
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@
             </div>
             <div class="right">
               <div class="block_hash">所在区块：#{{tx.block_height}}</div>
-              <div class="time">{{tx.timestamp_human}}</div>
+              <div class="time">{{formatDate(tx.timestamp_human)}}</div>
             </div>
           </div>
         </div>
@@ -97,6 +97,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
+import moment from 'moment'
 import HashTip from '@/components/HashTip.vue'
 
 @Component({
@@ -115,6 +116,11 @@ export default class Landing extends Vue {
   mounted() {
     this.$store.dispatch('bp/connectBP').then(this.fetchData)
     this.interval = setInterval(this.fetchData, 3000)
+  }
+
+  // methods
+  formatDate(date) {
+    return moment(date).format('YYYY-MM-DD HH:mm:ss')
   }
 
   fetchData() {

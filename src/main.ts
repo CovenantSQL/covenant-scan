@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Antd from 'ant-design-vue'
+import moment from 'moment'
 
 import './registerServiceWorker'
 
@@ -11,6 +12,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
 const bar = (Vue.prototype.$bar = new Vue(ProgressBar).$mount())
 document.body.appendChild(bar.$el)
 
+moment.locale('zh-cn')
 Vue.config.productionTip = false
 Vue.use(Antd)
 
