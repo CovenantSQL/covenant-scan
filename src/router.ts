@@ -4,6 +4,7 @@ import Landing from './views/Landing.vue'
 import Blocks from './views/Blocks.vue'
 import Txs from './views/Txs.vue'
 import Block from './views/Block.vue'
+import Transaction from './views/Transaction.vue'
 
 Vue.use(Router)
 
@@ -40,6 +41,12 @@ export default new Router({
       name: 'block',
       props: true,
       component: Block
+    },
+    {
+      path: '/tx/:hash',
+      name: 'tx',
+      props: true,
+      component: Transaction
     },
   ],
 })

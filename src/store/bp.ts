@@ -77,6 +77,16 @@ const actions = {
       }
     })
   },
+  async getTransactionByHash({ commit }, hash) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await cql.bp.getTransactionByHash(hash)
+        resolve(result)
+      } catch (e) {
+        reject(e)
+      }
+    })
+  },
 }
 
 // mutations

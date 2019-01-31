@@ -8,42 +8,42 @@
     </a-breadcrumb>
     <div class="card">
       <p class="title">
-        <span>#{{block.height}}</span>
+        <span>#{{transaction.height}}</span>
       </p>
       <div class="content">
         <div class="row">
           <label class="label">块高</label>
-          <div class="data">{{block.height}}</div>
+          <div class="data">{{transaction.height}}</div>
         </div>
         <div class="row">
           <label class="label">时间</label>
-          <div class="data">{{formatDate(block.timestamp_human)}}</div>
+          <div class="data">{{formatDate(transaction.timestamp_human)}}</div>
         </div>
         <div class="row">
           <label class="label">哈希</label>
-          <div class="data">{{block.hash}}</div>
+          <div class="data">{{transaction.hash}}</div>
         </div>
         <div class="row">
           <label class="label">交易数</label>
-          <div class="data">{{block.tx_count}}</div>
+          <div class="data">{{transaction.tx_count}}</div>
         </div>
         <div class="row">
           <label class="label">父块</label>
           <div class="data">
-            <router-link :to="'/block/' + block.parent">{{block.parent}}</router-link>
+            <router-link :to="'/block/' + transaction.parent">{{transaction.parent}}</router-link>
           </div>
         </div>
         <div class="row">
           <label class="label">生产者</label>
-          <div class="data">{{block.producer}}</div>
+          <div class="data">{{transaction.producer}}</div>
         </div>
         <div class="row">
           <label class="label">默克尔树根</label>
-          <div class="data">{{block.merkle_root}}</div>
+          <div class="data">{{transaction.merkle_root}}</div>
         </div>
         <div class="row">
           <label class="label">版本</label>
-          <div class="data">{{block.version}}</div>
+          <div class="data">{{transaction.version}}</div>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import { Prop, Component, Watch, Vue } from 'vue-property-decorator'
+import { Prop, Component, Vue } from 'vue-property-decorator'
 import { State, namespace } from 'vuex-class'
 import moment from 'moment'
 import HashTip from '@/components/HashTip.vue'
@@ -61,12 +61,12 @@ import HashTip from '@/components/HashTip.vue'
     HashTip,
   },
 })
-export default class Block extends Vue {
+export default class Transaction extends Vue {
   @State('bp') bpState
 
   @Prop(String) hash!: string
 
-  block = {}
+  transaction = {}
   loading = false
 
   // lifecycle hook
@@ -74,18 +74,23 @@ export default class Block extends Vue {
     this.$store.dispatch('bp/connectBP').then(this.fetchData)
   }
 
-  // watch
-  @Watch('hash')
-  onRouteHashChanged() {
-    this.fetchData()
+  updated() {
+    if (this.transaction.hash !== this.hash) {
+      this.fetchData()
+    }
   }
 
   // async
   async fetchData() {
     this.loading = true
     try {
-      let result = await this.$store.dispatch('bp/getBlockByHash', this.hash)
-      this.block = result
+      let result = await this.$store.dispatch(
+        'bp/getTransactionByHash',
+        this.hash
+      )
+      console.log('/////////', result)
+
+      this.transaction = result
       this.loading = false
     } catch (error) {
       console.error(error)
