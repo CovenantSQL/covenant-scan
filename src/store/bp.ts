@@ -43,8 +43,16 @@ const actions = {
     })
   },
   async getBlocks({ commit }, { page, size }) {
-    const result = await cql.bp.getBlockList(page, size)
-    commit('setBlocks', result)
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await cql.bp.getBlockList(page, size)
+        commit('setBlocks', result)
+        resolve(result)
+      } catch (e) {
+        commit('setIsConnected', false)
+        reject(e)
+      }
+    })
   },
   async getTxs({ commit }, { page, size }) {
     const result = await cql.bp.getTransactionList(page, size)
