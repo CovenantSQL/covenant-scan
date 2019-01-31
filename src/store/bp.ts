@@ -18,7 +18,7 @@ const state = {
 // getters
 const getters = {
   latestHeight(state) {
-    return state.block_pagination.total
+    return _.get(state.blocks, [0, 'height'])
   },
   landingBlocks(state) {
     return state.blocks.slice(0, 10)
@@ -56,12 +56,12 @@ const actions = {
 const mutations = {
   setBlocks(state, { blocks, pagination }) {
     const _blocks = state.blocks.concat(blocks)
-    state.blocks = _.uniqBy(_blocks, b => b.hash)
+    state.blocks = _.reverse(_.sortBy(_.uniqBy(_blocks, b => b.hash), b => b.timestamp))
     state.block_pagination = pagination
   },
   setTxs(state, { transactions, pagination }) {
     const _txs = state.txs.concat(transactions)
-    state.txs = _.uniqBy(_txs, t => t.hash)
+    state.txs = _.reverse(_.sortBy(_.uniqBy(_txs, b => b.hash), b => b.timestamp))
     state.tx_pagination = pagination
   },
   setIsConnected(state, connected) {
