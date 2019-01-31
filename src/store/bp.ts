@@ -20,6 +20,9 @@ const getters = {
   latestHeight(state) {
     return _.get(state.blocks, [0, 'height'])
   },
+  latestTxCount(state) {
+    return state.tx_pagination.total
+  },
   landingBlocks(state) {
     return state.blocks.slice(0, 10)
   },
@@ -49,14 +52,20 @@ const actions = {
         commit('setBlocks', result)
         resolve(result)
       } catch (e) {
-        commit('setIsConnected', false)
         reject(e)
       }
     })
   },
   async getTxs({ commit }, { page, size }) {
-    const result = await cql.bp.getTransactionList(page, size)
-    commit('setTxs', result)
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await cql.bp.getTransactionList(page, size)
+        commit('setTxs', result)
+        resolve(result)
+      } catch (e) {
+        reject(e)
+      }
+    })
   },
 }
 

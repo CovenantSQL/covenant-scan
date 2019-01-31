@@ -97,11 +97,6 @@ export default class Blocks extends Vue {
     this.$store.dispatch('bp/connectBP').then(() => this.fetchData(1))
   }
 
-  updateLocalPagination() {
-    let bpPagination = this.bpState.pagination
-    this.pagination.total = bpPagination.total
-  }
-
   handleTableChange(pagination: any) {
     console.log(pagination)
     const current: number = pagination.current
@@ -116,12 +111,11 @@ export default class Blocks extends Vue {
 
   // async
   async fetchData(page = this.pagination.current) {
-    console.log('////////fetchData', page)
     this.loading = true
     try {
       let result = await this.$store.dispatch('bp/getBlocks', {
         page: page,
-        size: 16,
+        size: this.pagination.pageSize,
       })
       this.data = result.blocks
       this.pagination.total = result.pagination.total
