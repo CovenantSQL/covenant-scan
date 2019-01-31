@@ -39,16 +39,20 @@
           <div v-if="landingBlocks.length" class="recent-blocks">
             <div :key="block.hash" v-for="block in landingBlocks" class="block item">
               <div class="left">
-                <div class="height">#{{block.height}}</div>
+                <div class="height">
+                  <router-link :to="'/block/' + block.hash">#{{block.height}}</router-link>
+                </div>
                 <div class="tx-count">交易数：{{block.tx_count}}</div>
                 <div class="producer">
                   <span>生产者：</span>
-                  <hash-tip :hash="block.producer" :cutLength="16"/>
+                  <hash-tip :hash="block.producer" :cutLength="10"/>
                 </div>
               </div>
               <div class="right">
                 <div class="hash">
-                  <hash-tip :hash="block.hash" :cutLength="16"/>
+                  <router-link :to="'/block/' + block.hash">
+                    <hash-tip :hash="block.hash" :cutLength="20"/>
+                  </router-link>
                 </div>
                 <div class="time">{{formatDate(block.timestamp_human)}}</div>
               </div>
@@ -69,7 +73,9 @@
             <div class="left">
               <div class="hash">
                 <span>交易哈希：</span>
-                <hash-tip :hash="tx.hash" :cutLength="20"/>
+                <router-link :to="'/tx/' + tx.hash">
+                  <hash-tip :hash="tx.hash" :cutLength="20"/>
+                </router-link>
               </div>
               <div class="address">
                 <span>地址：</span>
@@ -81,7 +87,9 @@
               </div>
             </div>
             <div class="right">
-              <div class="block_hash">所在区块：#{{tx.block_height}}</div>
+              <div class="block_hash">所在区块：
+                <router-link :to="'/block/' + tx.block_hash">#{{tx.block_height}}</router-link>
+              </div>
               <div class="time">{{formatDate(tx.timestamp_human)}}</div>
               <div>
                 <raw-tx :tx="tx.tx"/>

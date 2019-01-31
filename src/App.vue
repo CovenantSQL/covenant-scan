@@ -33,7 +33,7 @@ export default class App extends Vue {}
   color: #2c3e50;
 }
 .view {
-  min-height: 60vh;
+  min-height: 65vh;
 }
 .card {
   padding: 20px;

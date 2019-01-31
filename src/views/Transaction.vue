@@ -152,7 +152,7 @@ export default class Transaction extends Vue {
   padding: 20px 15px 40px;
   width: 1200px;
   max-width: 100%;
-  min-height: 55vh;
+  min-height: 60vh;
   color: #252728;
 }
 .breadcrumb {
