@@ -4,10 +4,10 @@ import _ from 'lodash'
 // cql instance for API call
 const BP_ENDPOINT = 'ws://bp00.cn.gridb.io:15150'
 const cql = new CQL(BP_ENDPOINT)
-cql.connect()
 
 // initial state
 const state = {
+  isConnected: false,
   running_status: {},
   blocks: [], // for landing page
   block_pagination: {},
@@ -30,6 +30,18 @@ const getters = {
 
 // actions
 const actions = {
+  connectBP({ commit }) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await cql.connect()
+        commit('setIsConnected', true)
+        resolve(true)
+      } catch (e) {
+        commit('setIsConnected', false)
+        reject(e)
+      }
+    })
+  },
   async getBlocks({ commit }, { page, size }) {
     const result = await cql.bp.getBlockList(page, size)
     commit('setBlocks', result)
@@ -52,6 +64,9 @@ const mutations = {
     state.txs = _.uniqBy(_txs, t => t.hash)
     state.tx_pagination = pagination
   },
+  setIsConnected(state, connected) {
+    state.isConnected = connected
+  }
 }
 
 export default {

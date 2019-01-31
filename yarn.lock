@@ -2194,13 +2194,14 @@ cosmiconfig@^5.0.0:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
-cql.js@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/cql.js/-/cql.js-0.0.2.tgz#a934de554dfbb6f46a12dfe7a3748347d1ca26b3"
+cql.js@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/cql.js/-/cql.js-0.1.1.tgz#1dface925cea6be874fccd998951f695e664bf75"
   dependencies:
     debug "^4.1.1"
     isomorphic-ws "^4.0.1"
     keyvenant "^0.0.1"
+    uuid "^3.3.2"
     ws "^6.1.2"
 
 create-ecdh@^4.0.0:

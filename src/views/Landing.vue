@@ -89,13 +89,10 @@ export default class Landing extends Vue {
   public runningStatus = {}
 
   mounted() {
-    this.getBlocksAndTxs(1, 10)
-  }
-
-  // methods
-  async getBlocksAndTxs(page: number, size: number) {
-    await this.$store.dispatch('bp/getBlocks', { page, size })
-    await this.$store.dispatch('bp/getTxs', { page, size })
+    this.$store.dispatch('bp/connectBP').then(() => {
+      this.$store.dispatch('bp/getBlocks', { page: 1, size: 10 })
+      this.$store.dispatch('bp/getTxs', { page: 1, size: 10 })
+    })
   }
 }
 </script>
