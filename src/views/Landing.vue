@@ -83,6 +83,9 @@
             <div class="right">
               <div class="block_hash">所在区块：#{{tx.block_height}}</div>
               <div class="time">{{formatDate(tx.timestamp_human)}}</div>
+              <div>
+                <raw-tx :tx="tx.tx"/>
+              </div>
             </div>
           </div>
         </div>
@@ -99,10 +102,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 import moment from 'moment'
 import HashTip from '@/components/HashTip.vue'
+import RawTx from '@/components/RawTx.vue'
 
 @Component({
   components: {
     HashTip,
+    RawTx,
   },
 })
 export default class Landing extends Vue {

@@ -23,61 +23,7 @@
           <hash-tip :hash="text" :cutLength="20"/>
         </span>
         <span slot="raw" slot-scope="tx">
-          <a-popover title="交易数据">
-            <template slot="content">
-              <div class="raw-tx">
-                <div class="row">
-                  <span class="label">哈希</span>
-                  {{tx.DataHash}}
-                </div>
-                <div class="row">
-                  <span class="label">Gas</span>
-                  {{tx.GasPrice}}
-                </div>
-                <div class="row">
-                  <span class="label">CPU</span>
-                  {{tx.LoadAvgPerCPU}}
-                </div>
-                <div class="row">
-                  <span class="label">内存</span>
-                  {{tx.Memory}}
-                </div>
-                <div class="row">
-                  <span class="label">Space</span>
-                  {{tx.Space}}
-                </div>
-                <div class="row">
-                  <span class="label">NodeID</span>
-                  {{tx.NodeID}}
-                </div>
-                <div class="row">
-                  <span class="label">Nonce</span>
-                  {{tx.Nonce}}
-                </div>
-                <div class="row">
-                  <span class="label">TokenType</span>
-                  {{tx.TokenType}}
-                </div>
-                <div class="row">
-                  <span class="label">TxType</span>
-                  {{tx.TxType}}
-                </div>
-                <div class="row">
-                  <span class="label">TargetUser</span>
-                  {{tx.TargetUser || '-'}}
-                </div>
-                <div class="row">
-                  <span class="label">签名</span>
-                  <pre>{{JSON.stringify(tx.Signature, null, 2)}}</pre>
-                </div>
-                <div class="row">
-                  <span class="label">签名者</span>
-                  <pre>{{JSON.stringify(tx.Signee, null, 2)}}</pre>
-                </div>
-              </div>
-            </template>
-            <a-tag color="green">raw</a-tag>
-          </a-popover>
+          <raw-tx :tx="tx"/>
         </span>
         <span slot="date" slot-scope="text">{{formatDate(text)}}</span>
       </a-table>
@@ -90,10 +36,12 @@ import { Component, Vue } from 'vue-property-decorator'
 import { State, namespace } from 'vuex-class'
 import moment from 'moment'
 import HashTip from '@/components/HashTip.vue'
+import RawTx from '@/components/RawTx.vue'
 
 @Component({
   components: {
     HashTip,
+    RawTx,
   },
 })
 export default class Txs extends Vue {
