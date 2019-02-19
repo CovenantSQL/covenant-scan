@@ -1,29 +1,28 @@
-# covenant-scan
+<p align="center">
+    <img src="public/logo.png"
+        height="100">
+</p>
+<p align="center">
 
-## Project setup
-```
-yarn install
-```
+## Background
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+CovenantScan is CovenantSQL's main chain explorer, mainly provides chain status, block producers status, blocks and transactions, etc. [cqli](https://github.com/CovenantSQL/cql.js) acts as an interactive client for the chain in CovenantScan.
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+## Development
 
-### Run your tests
-```
-yarn run test
-```
+For local development:
+- `yarn install`
+- `yarn dev`
 
-### Lints and fixes files
+## Deployment
+
+CovenantScan now is runing as a single page application host on Github Page, run ship script as following for deployment.
+
 ```
-yarn run lint
+./ship.sh
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Credit & License 
+Credit goes to handy [VueJS](https://github.com/vuejs) and its ecosystem.
+
+MIT
