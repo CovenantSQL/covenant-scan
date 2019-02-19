@@ -20,7 +20,7 @@ git commit -m 'ship: deployment'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f https://github.com/CovenantSQL/cql-excel-extension.git master:gh-pages
+git push -f https://github.com/CovenantSQL/covenant-scan.git master:gh-pages
 
 
 cd -
