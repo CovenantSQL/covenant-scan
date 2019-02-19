@@ -77,6 +77,9 @@ export default class Header extends Vue {
 .search {
   width: 300px;
   margin: 0 5px;
+  @media screen and (max-width: 768px) {
+    width: 180px;
+  }
 }
 .lang-dropdown {
   margin-left: 5px;
