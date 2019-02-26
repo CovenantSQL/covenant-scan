@@ -2,7 +2,7 @@ import CQL from 'cql.js'
 import _ from 'lodash'
 
 // cql instance for API call
-const BP_ENDPOINT = 'ws://bp00.cn.gridb.io:15150'
+const BP_ENDPOINT = 'ws://fn00.cn.gridb.io:15150'
 const cql = new CQL(BP_ENDPOINT)
 
 // initial state
