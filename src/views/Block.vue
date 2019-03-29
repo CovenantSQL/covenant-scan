@@ -9,6 +9,7 @@
     <div class="card">
       <p class="title">
         <span>#{{block.height}}</span>
+        <a-icon v-if="loading" slot="indicator" type="loading" style="font-size: 16px" spin/>
       </p>
       <div class="content">
         <div class="row">

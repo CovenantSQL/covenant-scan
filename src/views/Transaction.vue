@@ -9,6 +9,7 @@
     <div class="card">
       <p class="title">
         <span>交易：{{transaction.hash}}</span>
+        <a-icon v-if="loading" slot="indicator" type="loading" style="font-size: 16px" spin/>
       </p>
       <div class="content">
         <div class="row">
@@ -109,7 +110,7 @@ export default class Transaction extends Vue {
 
   @Prop(String) hash!: string
 
-  transaction = {}
+  transaction = { tx: {} }
   loading = false
 
   // lifecycle hook
