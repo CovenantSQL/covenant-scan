@@ -35,9 +35,17 @@
           <div class="data">{{transaction.type}}</div>
         </div>
         <div class="row">
-          <label class="label">原始交易数据</label>
+          <label class="label">Raw</label>
         </div>
         <div class="raw-wrapper">
+          <div class="row">
+            <pre>{{JSON.parse(transaction.raw)}}</pre>
+          </div>
+        </div>
+        <div class="tx-wrapper">
+          <div class="row">
+            <label class="label">原始交易数据</label>
+          </div>
           <div class="raw-tx">
             <div class="row">
               <span class="label">哈希</span>
@@ -45,23 +53,23 @@
             </div>
             <div class="row">
               <span class="label">Gas</span>
-              {{transaction.tx.GasPrice}}
+              {{transaction.tx.GasPrice || '-'}}
             </div>
             <div class="row">
               <span class="label">CPU</span>
-              {{transaction.tx.LoadAvgPerCPU}}
+              {{transaction.tx.LoadAvgPerCPU || '-'}}
             </div>
             <div class="row">
               <span class="label">内存</span>
-              {{transaction.tx.Memory}}
+              {{transaction.tx.Memory || '-'}}
             </div>
             <div class="row">
               <span class="label">Space</span>
-              {{transaction.tx.Space}}
+              {{transaction.tx.Space || '-'}}
             </div>
             <div class="row">
               <span class="label">NodeID</span>
-              {{transaction.tx.NodeID}}
+              {{transaction.tx.NodeID || '-'}}
             </div>
             <div class="row">
               <span class="label">Nonce</span>
@@ -175,6 +183,9 @@ export default class Transaction extends Vue {
     border-radius: 6px;
     border: 1px solid #ccc;
     background-color: #efefef;
+  }
+  .tx-wrapper {
+    display: none;
   }
   pre {
     font-size: 12px;
